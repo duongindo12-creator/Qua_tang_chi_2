@@ -77,16 +77,16 @@
             font-style: italic;
         }
 
-        /* --- MÀN HÌNH THIỆP CHÍNH (Ẩn ban đầu) --- */
+        /* --- MÀN HÌNH THIỆP CHÍNH --- */
         #card-container {
             position: absolute;
             z-index: 5;
-            width: 90%;
-            max-width: 420px;
-            background: rgba(20, 20, 20, 0.85);
+            width: 92%;
+            max-width: 440px;
+            background: rgba(20, 20, 20, 0.88);
             border: 2px solid #ff69b4;
             border-radius: 25px;
-            padding: 30px 25px;
+            padding: 25px 20px;
             text-align: center;
             box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
             backdrop-filter: blur(10px);
@@ -103,17 +103,17 @@
         }
 
         .card-header {
-            font-size: 16px;
+            font-size: 15px;
             color: #ffb6c1;
             letter-spacing: 1px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .card-title {
-            font-size: 28px;
+            font-size: 26px;
             color: #ff3366;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
         }
 
@@ -122,8 +122,8 @@
             align-items: center;
             justify-content: center;
             color: #ff69b4;
-            margin: 15px 0;
-            font-size: 20px;
+            margin: 10px 0;
+            font-size: 18px;
         }
         .divider::before, .divider::after {
             content: "";
@@ -133,41 +133,52 @@
         }
 
         .card-message {
-            font-size: 16px;
-            line-height: 1.6;
+            font-size: 15px;
+            line-height: 1.5;
             color: #f1f1f1;
             text-align: justify;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
+            padding: 12px;
             border-radius: 12px;
             border-left: 3px solid #ff3366;
         }
 
-        /* --- KHU VỰC CÁC NÚT TƯƠNG TÁC (Ý tưởng của bạn) --- */
-        .btn-group {
+        /* --- 4 Ô TƯƠNG TÁC (ĐÃ ĐIỀN NỘI DUNG CỦA BẠN) --- */
+        .btn-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
+            margin-bottom: 15px;
         }
 
-        .interactive-btn {
-            background: linear-gradient(135deg, #ff3366, #ff69b4);
-            border: none;
+        .box-btn {
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.2), rgba(255, 105, 180, 0.3));
+            border: 1.5px solid #ff69b4;
             color: white;
-            padding: 12px 10px;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 12px;
+            padding: 10px 8px;
+            font-size: 13px;
+            border-radius: 14px;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.3);
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(255, 51, 102, 0.2);
+            line-height: 1.4;
         }
 
-        .interactive-btn:hover {
+        .box-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 51, 102, 0.5);
-            background: linear-gradient(135deg, #ff1493, #ff3366);
+            background: linear-gradient(135deg, #ff3366, #ff69b4);
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+        }
+
+        /* Dòng cảm ơn ở cuối thiệp */
+        .card-footer-text {
+            font-size: 14px;
+            color: #ffb6c1;
+            font-style: italic;
+            border-top: 1px dashed rgba(255, 105, 180, 0.4);
+            padding-top: 10px;
         }
 
         /* Hiệu ứng nhịp đập trái tim */
@@ -182,7 +193,7 @@
 </head>
 <body>
 
-    <!-- Màn hình mở đầu theo đúng phác thảo: Chạm vào để bắt đầu -->
+    <!-- Màn hình mở đầu -->
     <div id="welcome-screen" onclick="openCard()">
         <div class="touch-box">
             <div class="heart-icon-welcome">❤️</div>
@@ -191,10 +202,10 @@
         </div>
     </div>
 
-    <!-- Canvas chứa hiệu ứng mưa trái tim nền động -->
+    <!-- Canvas chứa hiệu ứng mưa trái tim nền -->
     <canvas id="demoCanvas"></canvas>
 
-    <!-- Hộp thiệp chính xuất hiện sau khi chạm -->
+    <!-- Hộp thiệp chính -->
     <div id="card-container">
         <div class="card-header">20.10 • Mừng Ngày Phụ Nữ Việt Nam</div>
         <div class="card-title">Gửi riêng cho Chị Kem</div>
@@ -204,12 +215,28 @@
             Nhân ngày 20/10, Chúc chị Kem luôn xinh đẹp, rạng rỡ như những đóa hoa đầu mùa. Mong mỗi ngày của chị đều ngập tràn tiếng cười và thật nhiều yêu thương! 💕
         </div>
 
-        <!-- Bổ sung các nút bấm tương tác (hoàn thiện phần ô trống bạn chưa nghĩ ra) -->
-        <div class="btn-group">
-            <button class="interactive-btn" onclick="alert('Chúc chị Kem luôn vui vẻ và mãi là công chúa của em nhé! 🌸')">Lời Chúc Thêm</button>
-            <button class="interactive-btn" onclick="triggerExtraHearts()">Bão Tim Thêm! 💖</button>
-            <button class="interactive-btn" onclick="alert('Mã quà tặng bí mật: Chị Kem là số một trong tim Mạnh! 🎁')">Món Quà Bí Mật</button>
-            <button class="interactive-btn" onclick="alert('Cảm ơn chị vì luôn ở bên cạnh em! Love you so much! 🥰')">Điều Ngọt Ngào</button>
+        <!-- 4 Ô tương tác theo đúng ý tưởng trong vở của bạn -->
+        <div class="btn-grid">
+            <button class="box-btn" onclick="showAlert('🌸 Hoa anh đào 🌸', 'Thân anh đào luôn rạng rỡ xinh đẹp, rạng rỡ từ nụ cười đến ánh nhìn!')">
+                <b>🌸 Hoa anh đào</b><br>Luôn rạng rỡ xinh đẹp, rạng rỡ từ nụ cười đến ánh nhìn
+            </button>
+
+            <button class="box-btn" onclick="showAlert('✨ Bình yên ✨', 'Bình yên nhẹ nhàng giữa mọi bộn bề cuộc sống!')">
+                <b>✨ Bình yên</b><br>Nhẹ nhàng giữa mọi bộn bề cuộc sống
+            </button>
+
+            <button class="box-btn" onclick="showAlert('💖 Hạnh phúc 💖', 'Thật hạnh phúc, mỗi ngày đều có một niềm vui nhỏ!')">
+                <b>💖 Hạnh phúc</b><br>Thật hạnh phúc, mỗi ngày đều có một niềm vui nhỏ
+            </button>
+
+            <button class="box-btn" onclick="showAlert('🌷 Hoa 🌷', 'Được yêu thương nhiều hơn những gì chị nghĩ!')">
+                <b>🌷 Hoa</b><br>Được yêu thương nhiều hơn những gì chị nghĩ
+            </button>
+        </div>
+
+        <!-- Dòng cuối cùng trích từ trang vở -->
+        <div class="card-footer-text">
+            Cảm ơn chị vì đã xuất hiện và làm cho cuộc sống của em có thêm nhiều ý nghĩa! 💗🫶
         </div>
     </div>
 
@@ -249,7 +276,6 @@
             stage.addChild(heart);
         }
 
-        // Vòng lặp chuyển động trái tim bay lên
         createjs.Ticker.framerate = 60;
         createjs.Ticker.on("tick", function(event) {
             for (var i = 0; i < hearts.length; i++) {
@@ -265,12 +291,10 @@
             stage.update(event);
         });
 
-        // Hàm xử lý khi bấm vào màn hình mở đầu
         function openCard() {
             var welcomeScreen = document.getElementById("welcome-screen");
             var cardContainer = document.getElementById("card-container");
 
-            // Hiệu ứng mờ dần màn hình chào
             welcomeScreen.style.opacity = 0;
             setTimeout(function() {
                 welcomeScreen.style.display = "none";
@@ -278,29 +302,11 @@
             }, 800);
         }
 
-        // Hiệu ứng tăng tốc thêm tim khi bấm nút "Bão tim thêm"
-        function triggerExtraHearts() {
-            for(let i = 0; i < 50; i++) {
-                let heart = new createjs.Shape();
-                let color = colors[Math.floor(Math.random() * colors.length)];
-                heart.graphics.beginFill(color)
-                    .moveTo(0, -5)
-                    .bezierCurveTo(-15, -25, -30, 0, 0, 25)
-                    .bezierCurveTo(30, 0, 15, -25, 0, -5);
-
-                heart.x = w / 2 + (Math.random() - 0.5) * 200;
-                heart.y = h / 2 + (Math.random() - 0.5) * 100;
-                heart.scaleX = heart.scaleY = Math.random() * 1.2 + 0.5;
-                heart.alpha = 1;
-                heart.vY = - (Math.random() * 5 + 2);
-                heart.vX = (Math.random() - 0.5) * 4;
-                
-                hearts.push(heart);
-                stage.addChild(heart);
-            }
+        // Hàm hiển thị thông điệp khi bấm vào 4 ô
+        function showAlert(title, message) {
+            alert(title + "\n\n" + message + " 🥰");
         }
 
-        // Tự động căn chỉnh khi thay đổi kích thước màn hình
         window.addEventListener('resize', function() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
